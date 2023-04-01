@@ -376,11 +376,11 @@
   
   
   
-    <script>
+    {{-- <script>
 
         // Get references to the color and size input elements
         const colorInputs = document.querySelectorAll('.color-input');
-        const sizeInput = document.querySelector('.size-input');
+        // const sizeInput = document.querySelector('.size-input');
       
         // Get reference to the product price element
         const productPriceEl = document.querySelector('#product-price');
@@ -397,18 +397,18 @@
             productPriceEl.innerHTML = ''
           // Get the selected color and size values
           const selectedColor = document.querySelector('input[name="color"]:checked').dataset.price;
-          const selectedSize = sizeInput.value;
+         // const selectedSize = sizeInput.value;
           // Look up the prices for the selected color and size in the product data
           const colorPrice = Number(selectedColor); // replace with actual code to get the price for the selected color
-          const sizePrice = sizeInput.options[sizeInput.selectedIndex].dataset.price;
+          //const sizePrice = sizeInput.options[sizeInput.selectedIndex].dataset.price;
           // Calculate the updated price of the product
           const basePrice = Number(productPriceEl.innerHTML); // replace with actual code to get the base price of the product
 
-          const updatedPrice = basePrice + colorPrice + parseInt(sizePrice)
+          const updatedPrice = basePrice + colorPrice //+ parseInt(sizePrice)
           // Update the price display with the updated price 
           productPriceEl.textContent = updatedPrice;
         }
-      </script>
+      </script> --}}
   
   
   

@@ -217,7 +217,7 @@
                                                             <tr>
                                                                     <td><input type="color" name="color[]" /></td> 
                                                                     <td><input type="text" name="co[]" class="d-none"/></td> 
-                                                                    <td><input type="number" name="priceco[]" class="btn theme-btn-2 form-control" placeholder="السعر"></td>
+                                                                    <td><input type="number" name="priceco[]" class="btn theme-btn-2 form-control" placeholder="السعر المضاف للسعر الاساسي"></td>
                                                                     <td>  <button type="button" class="btn btn-lg btn-add-co">
                                                                 <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
                                                             </button></td>
@@ -241,7 +241,7 @@
                                                             <tr>
                                                                     <td><input type="text" name="option[]"  placeholder="الحجم" class="btn theme-btn-2 form-control"/></td> 
                                                                      <td><input type="text" name="op[]" class="d-none"/></td> 
-                                                                     <td><input type="number" name="priceop[]" class="btn theme-btn-2 form-control" placeholder="السعر"></td>
+                                                                     <td><input type="number" name="priceop[]" class="btn theme-btn-2 form-control" placeholder="السعر المضاف للسعر الاساسي"></td>
                                                                     <td>  <button type="button" class="btn btn-lg btn-add-op">
                                                                 <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
                                                             </button></td>
