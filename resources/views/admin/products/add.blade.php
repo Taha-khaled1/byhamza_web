@@ -278,9 +278,9 @@
                                                         <table class="table meeting-table class-table">
                                                             <tr>
                                                                     <td><input type="text" name="opti[]"  placeholder="الحجم" class="btn theme-btn-2 form-control"/></td> 
-                                                                     <td><input type="text" name="opp[]" class="d-none"/></td> 
-                                                                     <td><input type="number"  class="btn theme-btn-2 form-control" placeholder="السعر"></td>
-                                                                     <td><input type="color" name="" id=""></td> 
+                                                                    <td><input type="color" name="colo[]" /></td>  
+                                                                    <td><input type="number" name="pricoloandopti[]" class="btn theme-btn-2 form-control" placeholder="السعر"></td>
+                                                                     {{-- <td><input type="color" name="" id=""></td>  --}}
                                                                      
                                                                     <td>  <button type="button" class="btn btn-lg btn-add-opp">
                                                                         

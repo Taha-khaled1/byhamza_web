@@ -139,6 +139,7 @@ class ProductController extends Controller
 
     public function product_save(Request $request)
     { 
+      
             $request->validate([
             'name' => 'required|max:100',
             'code' => 'required|unique:products|max:100',
@@ -246,18 +247,33 @@ class ProductController extends Controller
              }
 
 
-            //  $option[] = $request->option;
-            // //  $price[] = $request->price;
-            //  $oo= $request->op;
-            //  for($i = 0; $i < count($oo); $i++)
-            //   {
-            //     if( $request->option[$i] == null){}else{
-            //     $op =new Option();
-            //     $op->product_id = $product->id;              
-            //     $op->name =$request->option[$i];  
-            //      $op->save();
-                 
-            //   }}
+
+
+
+
+
+             for($i = 0; $i < count($request->opti); $i++)
+             {
+
+                if ($request->opti[$i] !=null) {
+                    $op =new Option();
+                    $c =new Color();
+                    $op->product_id = $product->id;             
+                    $op->name =$request->opti[$i]; 
+                    $c->product_id = $product->id;
+                    $c->color =$request->colo[$i];
+
+                    if ($request->pricoloandopti[$i] !=null) {
+                        $op->price =$request->pricoloandopti[$i];  
+                    }else{
+                        $op->price =0;
+                    }       
+                    $op->save();
+                    $c->save();
+                }
+
+             }
+
 
            if($product) {
             notify()->success('تم اضافة منتج  !');
