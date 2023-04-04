@@ -122,8 +122,10 @@
                                             </tr> @endif @endif
                                         </table>
                                     </div>
-                                     <br>    <input type="text"  name="rate" value="0" style="display:none"   >
-                                    <button class="btn btn-sqr d-block" type="submit">{{__('Continue to complete the purchase')}} </button></div>
+                                     <br>    
+                                     <input type="text"  name="rate" value="0" style="display:none"   >
+                                    <div class="p-2"><button class="btn text-white d-block" style="background-color:#563e32;" type="submit">{{__('Continue to complete the purchase')}} </button></div>
+                                    </div>
                                      
                                   </form>
                                 </div>

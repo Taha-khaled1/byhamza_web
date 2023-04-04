@@ -27,8 +27,8 @@
 
                     <form action="" method="post" id="payment-form">
                         <div id="payment-element"></div>
-                        <br><button type="submit" id="submit"  class="btn btn-sqr" >
-                            <span id="button-text">{{__('Pay now')}}</span>
+                        <br><button type="submit" id="submit"  class="btn text-white d-block" style="background-color:#563e32;" >
+                            <span id="button-text" >{{__('Pay now')}}</span>
                             <span id="spinner" style="display: none;">Processing...</span>
                         </button>  
                     </form>

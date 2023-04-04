@@ -89,7 +89,7 @@
          </section>
     </div>
 </div>
- <!-- <section class="product-area section-padding bg-gray"  >
+ {{-- <!-- <section class="product-area section-padding bg-gray"  >
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -151,7 +151,7 @@
         </section>
         <div class="swiper-pagination"></div>
       </div>
-    </section> -->
+    </section> --> --}}
 
 <div class="shopping">
     <h1>{{__('Shop by category')}}</h1>
@@ -193,10 +193,10 @@
     <div class="container">
         <h1>{{__('Best Selling')}}</h1>
         <div class="row">
-            <div class="swiper mySwiper2" dir="{{$dir}}">
-                 <div class="swiper-wrapper">
+            <div dir="{{$dir}}">
+                 <div class="row">
                     @foreach ($images as $item)
-                    <div class="swiper-slide d-flex flex-column item">
+                    <div class="d-flex flex-column item col-lg-6">
                         <img src="{{asset($item->image)}}" alt="" style="height: 560px">
                     </div>
                     @endforeach

@@ -205,7 +205,7 @@
 
                   <hr class="my-4 hr-blue">
 
-                <input type="submit" class="btn btn-sqr" value=" {{__('Confirmation')}} ">
+                <input type="submit" class="btn text-white d-block" style="background-color:#563e32;" value=" {{__('Confirmation')}} ">
 
         </div> </form> 
     </div>
