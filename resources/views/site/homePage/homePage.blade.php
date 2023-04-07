@@ -45,8 +45,8 @@
     </div>
 </section> -->
 <div class="hero text-center rounded m-1" style="background-image:url({{asset('storage/property/'.$carousel->image)}});">
-    <h1 class="mb-5">{{__('Shop now on great offers')}}</h1> 
-    <a href="{{route('products')}}" class="text-decoration-none">{{__('Shop now')}}</a>
+    {{-- <h1 class="mb-5">{{__('Shop now on great offers')}}</h1> 
+    <a href="{{route('products')}}" class="text-decoration-none">{{__('Shop now')}}</a> --}}
 </div>
 
  <div class="bg-light">
@@ -196,7 +196,7 @@
             <div dir="{{$dir}}">
                  <div class="row">
                     @foreach ($images as $item)
-                    <div class="d-flex flex-column item col-lg-6 overflow-hidden" style="height: 560px">
+                    <div class="d-flex flex-column item col-lg-3 col-6 overflow-hidden" style="height: 450px">
                         <img src="{{asset($item->image)}}" alt="" style="height: 1000px">
                     </div>
                     @endforeach
