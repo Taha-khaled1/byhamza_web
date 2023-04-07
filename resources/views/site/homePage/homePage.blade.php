@@ -196,8 +196,8 @@
             <div dir="{{$dir}}">
                  <div class="row">
                     @foreach ($images as $item)
-                    <div class="d-flex flex-column item col-lg-3 col-6 overflow-hidden" style="height: 450px">
-                        <img src="{{asset($item->image)}}" alt="" style="height: 1000px">
+                    <div class="d-flex flex-column item col-lg-3 col-6 overflow-hidden mb-3">
+                        <img src="{{asset($item->image)}}" alt="" style="height: 320px">
                     </div>
                     @endforeach
                 </div>
