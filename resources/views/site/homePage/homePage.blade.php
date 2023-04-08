@@ -71,7 +71,7 @@
 
                  <div class="d-flex flex-column item">
                     <a href="{{route('viewProperty',$product->id)}}" class="bg-transparent p-0"><img src="{{asset('/storage/property/'.$product->image)}}" alt="" class="custom-imgg"></a>
-                 <div class="text-center">
+                 <div class="text-center p-2">
                     <h4 class="mt-2">
                     @if($product->name_en != null)
                         @if( LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
@@ -168,7 +168,7 @@
                  <div class="d-flex flex-column item">
                  @if($ca->img)
                 <div class="sort text-center">
-                    <img src="{{asset('/storage/property/'.$ca->img)}}" alt="">
+                    <img src="{{asset('/storage/property/'.$ca->img)}}" alt="" class="custom-imgg">
                     <a href="{{route('category_property',$ca->id)}}">
                     @if($ca->name_en != null)
                                         @if( LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
