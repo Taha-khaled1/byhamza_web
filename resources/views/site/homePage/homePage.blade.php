@@ -1,4 +1,5 @@
 @extends('layouts.layoutSite.SitePage')
+
 @section('content')
 <!-- hero slider area start -->
 <!-- <section class="slider-area">
@@ -67,8 +68,9 @@
              <div class="row">
              @foreach( $products as $product)
              <div class="col-lg-3 col-6 mb-3">
+
                  <div class="d-flex flex-column item">
-                    <a href="{{route('viewProperty',$product->id)}}" class="bg-transparent p-0"><img src="{{asset('/storage/property/'.$product->image)}}" alt="" style="width:100%;height: 320px;"></a>
+                    <a href="{{route('viewProperty',$product->id)}}" class="bg-transparent p-0"><img src="{{asset('/storage/property/'.$product->image)}}" alt="" class="custom-imgg"></a>
                  <div class="text-center">
                     <h4 class="mt-2">
                     @if($product->name_en != null)
