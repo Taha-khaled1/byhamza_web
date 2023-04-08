@@ -63,12 +63,13 @@
                     $dir = 'ltr'
                 @endphp
             @endif
-           <div class="swiper mySwiper" dir="{{$dir}}">
-             <div class="swiper-wrapper">
+           <div class="" dir="{{$dir}}">
+             <div class="row">
              @foreach( $products as $product)
-             <div class="swiper-slide d-flex flex-column item">
-                 <a href="{{route('viewProperty',$product->id)}}" class="bg-transparent p-0"><img src="{{asset('/storage/property/'.$product->image)}}" alt="" style="width:100%;height: 320px;"></a>
-                 <div>
+             <div class="col-lg-3 col-6 mb-3">
+                 <div class="d-flex flex-column item">
+                    <a href="{{route('viewProperty',$product->id)}}" class="bg-transparent p-0"><img src="{{asset('/storage/property/'.$product->image)}}" alt="" style="width:100%;height: 320px;"></a>
+                 <div class="text-center">
                     <h4 class="mt-2">
                     @if($product->name_en != null)
                         @if( LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
@@ -81,6 +82,7 @@
                     </h4>
                     <h6 class="text-center py-2">{{$product->price}} {{__('AED')}}</h6>
                     <a class="btn btn-primary add_cart border-0" product_id="{{$product->id}}" >{{__('Add to cart')}}</a>
+                 </div>
                  </div>
                </div>
              @endforeach
@@ -157,11 +159,11 @@
     <h1>{{__('Shop by category')}}</h1>
     <div class="container">
         <div class="row">
-        <div class="swiper mySwiper" dir="{{$dir}}">
-             <div class="swiper-wrapper">
+        <div class="" dir="{{$dir}}">
+             <div class="row">
              @foreach($categores as $ca)
-             <div class="swiper-slide d-flex flex-column item">
-                 <div>
+             <div class="col-lg-3 col-6 mb-3">
+                 <div class="d-flex flex-column item">
                  @if($ca->img)
                 <div class="sort text-center">
                     <img src="{{asset('/storage/property/'.$ca->img)}}" alt="">
@@ -177,7 +179,8 @@
 
                     </a>
                 </div>
-            @endif                 </div>
+                 @endif                
+                </div>
                </div>
              @endforeach
              </div>
