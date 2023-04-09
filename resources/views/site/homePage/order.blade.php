@@ -177,18 +177,21 @@
                 
                 </div>
                 
-                <div class="mb-3 form-check">
-                @error('payment_method')
-                            <small class="form-text text-danger">{{$message}}</small>
-                            @enderror
+                {{-- <div class="mb-3 form-check">
+                    @error('payment_method')
+                        <small class="form-text text-danger">{{$message}}</small>
+                    @enderror
                     <input name="payment_method" class="form-check-input" type="radio" checked value="cash" id="buy-cash" >
                     <label class="form-check-label" for="buy-cash">
                         <img src="{{asset('images/cach.png')}}" width="50px" height="20px" alt="buy cash">
                              {{__('Cash on delivery')}}
                     </label>
-                  </div>
+                  </div> --}}
                   <div class="mb-3 form-check">
-                    <input name="payment_method" class="form-check-input" type="radio" value="check" id="buy-check">
+                    @error('payment_method')
+                        <small class="form-text text-danger">{{$message}}</small>
+                    @enderror
+                    <input name="payment_method" class="form-check-input" type="radio" value="check" id="buy-check" checked>
                     <label class="form-check-label" for="buy-check">
                         <img src="{{asset('images/chech.png')}}" width="60px" height="10px" alt="buy cash">
                         {{__('Pay by credit card')}}
