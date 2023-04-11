@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-     
+
+    
     public function index(){
 
         $collection = Setting::all();

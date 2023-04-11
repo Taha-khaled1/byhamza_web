@@ -44,7 +44,7 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         // This is your test publishable API key.
-        const stripe = Stripe("{{ config('services.stripe.publishable_key') }}");
+        const stripe = Stripe("{{ $value->value }}");
 
         let elements;
 

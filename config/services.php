@@ -1,4 +1,5 @@
 <?php
+use App\Models\Setting;
 
 return [
 
@@ -24,8 +25,8 @@ return [
         'token' => env('POSTMARK_TOKEN'),
     ],
     'stripe' => [
-        'publishable_key' => env('STRIPE_PUBLISHABLE_KEY'),
-        'secret_key' => env('STRIPE_SECRET_KEY'),
+        // 'publishable_key' =>  Setting::where('key', 'public_key')->value('public_key')->get(),
+        // 'secret_key' =>  Setting::where('key', 'Secrt_key')->value('Secrt_key') ->get(),
     ],
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
