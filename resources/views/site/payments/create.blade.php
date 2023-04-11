@@ -25,7 +25,7 @@
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
                     <div id="payment-message" style="display: none;" class="alert alert-info"></div>
 
-                    <form action="" method="post" id="payment-form">
+                    <form action="#" method="post" id="payment-form">
                         @csrf
                         <div id="payment-element"></div>
                         <br><button type="submit" id="submit"  class="btn text-white d-block" style="background-color:#563e32;" >
