@@ -34,7 +34,7 @@ class PaymentsController extends Controller
          */
         $sss= Setting::where('key', 'Secrt_key')->first();
          $amount =$request->total * 100 ;
-         $stripe = new \Stripe\StripeClient($sss??'');
+         $stripe = new \Stripe\StripeClient(config('services.stripe.secret_key'));
          $paymentIntent = $stripe->paymentIntents->create([
              'amount' => $amount, 
              'currency' => 'aed',
@@ -69,8 +69,7 @@ class PaymentsController extends Controller
         /**
          * @var \Stripe\StripeClient
          */
-        $sss= Setting::where('key', 'Secrt_key')->first();
-        $stripe = new \Stripe\StripeClient($sss??'');
+        $stripe = new \Stripe\StripeClient(config('services.stripe.secret_key'));
 
         $paymentIntent = $stripe->paymentIntents->retrieve(
             $request->query('payment_intent'),
