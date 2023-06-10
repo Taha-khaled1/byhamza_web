@@ -273,6 +273,25 @@
                                             </div>
                                         </div>
                      
+
+                                        <div class="mb-3 row">
+                                            <label for="example-text-input" class="col-sm-3 col-form-label text-end"> public_key  </label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" name="public_key" type="text" value="{{$setting['public_key']}}" id="example-text-input">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="mb-3 row">
+                                            <label for="example-text-input" class="col-sm-3 col-form-label text-end"> Secrt_key   </label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" name="Secrt_key" type="text" value="{{$setting['Secrt_key']}}" id="example-text-input">
+                                            </div>
+                                        </div>
+
+
+
                                         </div>
 
                                      

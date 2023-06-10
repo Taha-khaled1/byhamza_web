@@ -25,7 +25,8 @@
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
                     <div id="payment-message" style="display: none;" class="alert alert-info"></div>
 
-                    <form action="" method="post" id="payment-form">
+                    <form action="#" id="payment-form">
+                      
                         <div id="payment-element"></div>
                         <br><button type="submit" id="submit"  class="btn text-white d-block" style="background-color:#563e32;" >
                             <span id="button-text" >{{__('Pay now')}}</span>
@@ -41,97 +42,130 @@
 
 @push('js') 
 
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        // This is your test publishable API key.
-        const stripe = Stripe("{{ config('services.stripe.publishable_key') }}");
-
-        let elements;
-
-        initialize();
-
-        document
-            .querySelector("#payment-form")
-            .addEventListener("submit", handleSubmit);
-
-        // Fetches a payment intent and captures the client secret
-        async function initialize() {
-            const {
-                clientSecret
-            } = await fetch("{{ route('stripe.paymentIntent.create', $order->id) }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "_token": "{{ csrf_token() }}",
-                    "total": "{{$order->total}}",
-                    "id": "{{$order->id}}"
-                }),
-            }).then((r) => r.json());
-
-            elements = stripe.elements({
-                clientSecret
-            });
-
-            const paymentElement = elements.create("payment");
-            paymentElement.mount("#payment-element");
+    
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    if (Notification.permission !== "granted") {
+    Notification.requestPermission().then(function (permission) {
+        if (permission === "granted") {
+        // User granted permission, set cookies here
         }
+    });
+    } else {
+    // Cookies have already been granted, set cookies here
+    }
+    // This is your test publishable API key.
+    const stripe = Stripe("{{ config('services.stripe.publishable_key') }}");
 
-        async function handleSubmit(e) {
-            e.preventDefault();
-            setLoading(true);
+    let elements;
 
-            const {
-                error
-            } = await stripe.confirmPayment({
-                elements,
-                confirmParams: {
-                    // Make sure to change this to your payment completion page
-                    return_url: "{{ route('stripe.return', $order->id) }}",
-                },
-            });
+    initialize();
 
-            // This point will only be reached if there is an immediate error when
-            // confirming the payment. Otherwise, your customer will be redirected to
-            // your `return_url`. For some payment methods like iDEAL, your customer will
-            // be redirected to an intermediate site first to authorize the payment, then
-            // redirected to the `return_url`.
-            if (error.type === "card_error" || error.type === "validation_error") {
-                showMessage(error.message);
-            } else {
-                showMessage("An unexpected error occurred.");
-            }
+    document
+        .querySelector("#payment-form")
+        .addEventListener("submit", handleSubmit);
 
+    // Fetches a payment intent and captures the client secret
+    async function initialize() {
+        const {
+            clientSecret
+        } = await fetch("{{ route('stripe.paymentIntent.create', $order->id) }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "same-origin"
+            },
+            body: JSON.stringify({
+                "_token": "{{ csrf_token() }}",
+                "total": "{{$order->total}}",
+                "id": "{{$order->id}}"
+            }),
+        }).then((r) => r.json());
+        localStorage.setItem('clientSecret', clientSecret);
+
+        elements = stripe.elements({
+            clientSecret
+        });
+
+        const paymentElement = elements.create("payment");
+        paymentElement.mount("#payment-element");
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setLoading(true);
+
+        const {
+            error
+        } = await stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                // Make sure to change this to your payment completion page
+                return_url: "{{ route('stripe.return', $order->id) }}",
+            },
+        });
+
+
+
+            if (error) {
+            showMessage(error.message);
             setLoading(false);
-        }
-        
-        // ------- UI helpers -------
-
-        function showMessage(messageText) {
-            const messageContainer = document.querySelector("#payment-message");
-
-            messageContainer.style.display = "block";
-            messageContainer.textContent = messageText;
-
-            setTimeout(function() {
-                messageContainer.style.display = "none";
-                messageText.textContent = "";
-            }, 4000);
+            return;
         }
 
-        // Show a spinner on payment submission
-        function setLoading(isLoading) {
-            if (isLoading) {
-                // Disable the button and show a spinner
-                document.querySelector("#submit").disabled = true;
-                document.querySelector("#spinner").style.display = "inline";
-                document.querySelector("#button-text").style.display = "none";
-            } else {
-                document.querySelector("#submit").disabled = false;
-                document.querySelector("#spinner").style.display = "none";
-                document.querySelector("#button-text").style.display = "inline";
-            }
+        // Payment succeeded, update the payment status and order status
+        const orderId = {{$order->id}};
+        const token = "{{ csrf_token() }}";
+
+        // Make an AJAX request to update the order status
+        const response = await  fetch("{{ route('update-payment-status') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": token
+            },
+            body: JSON.stringify({
+                payment_status: 1,
+                status: 1,
+                paymentIntentId: paymentIntent.id,
+                orderId: {{$order->id}},
+            }),
+        });
+        if (error.type === "card_error" || error.type === "validation_error") {
+            showMessage(error.message);
+        } else {
+            showMessage("An unexpected error occurred.");
         }
-    </script>
+
+        setLoading(false);
+    }
+    
+    // ------- UI helpers -------
+
+    function showMessage(messageText) {
+        const messageContainer = document.querySelector("#payment-message");
+
+        messageContainer.style.display = "block";
+        messageContainer.textContent = messageText;
+
+        setTimeout(function() {
+            messageContainer.style.display = "none";
+            messageText.textContent = "";
+        }, 4000);
+    }
+
+    // Show a spinner on payment submission
+    function setLoading(isLoading) {
+        if (isLoading) {
+            // Disable the button and show a spinner
+            document.querySelector("#submit").disabled = true;
+            document.querySelector("#spinner").style.display = "inline";
+            document.querySelector("#button-text").style.display = "none";
+        } else {
+            document.querySelector("#submit").disabled = false;
+            document.querySelector("#spinner").style.display = "none";
+            document.querySelector("#button-text").style.display = "inline";
+        }
+    }
+</script>
  @endpush

@@ -5,6 +5,7 @@ use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Website;
 use Carbon\Carbon;
 
 use App\Http\Controllers\Controller;
@@ -31,6 +32,20 @@ class HomeController extends Controller
             'prductsem' => $prductsem,       
         ]);
     }
+
+    // public function handleweb(Request $request)
+    // {
+    //     $website = Website::first();
+    //     if ($request->maintenance_mode == "true") {
+    //         $website->actv = 1;
+    //     } else {
+    //         $website->actv = 0;
+    //     }
+    //     $website->Description_ar = $request->description_ar;
+    //     $website->Description_en = $request->description_en;
+    //     $website->save();
+    //     return redirect()->route('admin.home');
+    // }
     public function contact(){
         
         $contact = Contact::latest()->get();

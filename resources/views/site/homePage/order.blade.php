@@ -30,7 +30,7 @@
                     <input type="email" name="email" class="form-control" id="email-address" value="@if($add == 1) {{$address->email}} @else {{old('email')}}  @endif" maxlength="100" required>
                   </div>
                   <div class="my-3">
-                    <label for="choose-region"  > {{__('المنطقة')}}</label><br>
+                    <label for="choose-region"  > {{__('Region')}}</label><br>
                     @error('area')
                             <small class="form-text text-danger">{{$message}}</small>
                             @enderror
