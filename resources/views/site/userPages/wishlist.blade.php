@@ -165,7 +165,7 @@
                                                     {{$like->name}}
                                                     @endif
                             </a>
-                            <p class="fs-5 mt-2">120$</p>
+                            <p class="fs-5 mt-2">{{$product->price}} {{__('AED')}}</p>
                             <button class="btn btn-cart add_cart" product_id="{{$like->product->id}}" href="#">{{__('Add to cart')}}</button>
                         </div>
                     </div>

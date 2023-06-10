@@ -47,7 +47,7 @@
                                                 {{$product->name}}
                                                 @endif
                         </a>
-                        <p class="fs-5 mt-2">120$</p>
+                        <p class="fs-5 mt-2">{{$product->price}} {{__('AED')}}</p>
                         <a class="btn btn-cart add_cart mb-2" product_id="{{$product->id}}" href="#">{{__('Add to cart')}}</a>
                     </div>
                 </div>
